@@ -42,7 +42,7 @@ public class PedidoServiceImpl implements PedidoService {
                 .findFirst()
                 .orElseThrow(NaoExisteException::new);
 
-        var domain = new Pedido(farma);
+        var domain = new Pedido(farmaceutico, cliente);
         LIST.add(domain);
         return domain;
     }
