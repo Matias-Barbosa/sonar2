@@ -25,6 +25,7 @@ public class ClienteRepositoryImpl implements ClienteRepository {
 
     @Override
     public void cadastrar(Cliente cliente) {
+
         LIST.add(cliente);
 
     }

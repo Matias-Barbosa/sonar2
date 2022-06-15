@@ -14,7 +14,7 @@ public interface PedidoService {
     Pedido consultar(UUID id);
     Pedido cadastrar(PedidoModel model);
     Pedido alterar(UUID id, PedidoModel model);
-
     Pedido adicionaProduto(UUID id, AdicionarPedidoModel model);
     Pedido remover(UUID id);
+    Pedido pagar();
 }

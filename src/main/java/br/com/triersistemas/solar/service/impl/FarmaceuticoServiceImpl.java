@@ -1,5 +1,6 @@
 package br.com.triersistemas.solar.service.impl;
 
+import br.com.triersistemas.solar.domain.Cliente;
 import br.com.triersistemas.solar.domain.Farmaceutico;
 import br.com.triersistemas.solar.exceptions.NaoExisteException;
 import br.com.triersistemas.solar.model.FarmaceuticoModel;
@@ -33,8 +34,10 @@ public class FarmaceuticoServiceImpl implements FarmaceuticoService {
 
     @Override
     public Farmaceutico alterar(UUID id, FarmaceuticoModel model) {
-        return null;
+        Farmaceutico farmaceutico = this.consultar(id);
+        return farmaceutico.editar(model.getNome(), model.getAniver(), model.getCpf());
     }
+
 
     @Override
     public Farmaceutico remover(UUID id) {

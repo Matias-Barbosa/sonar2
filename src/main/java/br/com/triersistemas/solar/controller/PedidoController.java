@@ -8,6 +8,7 @@ import br.com.triersistemas.solar.model.PagarPedidoModel;
 import br.com.triersistemas.solar.model.PedidoModel;
 import br.com.triersistemas.solar.repository.PedidoRepository;
 import br.com.triersistemas.solar.service.PedidoService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,18 +19,17 @@ import java.util.stream.Collectors;
 @RequestMapping("/pedido")
 public class PedidoController {
 
+    @Autowired
     private PedidoService pedidoService;
-
-    public static final List<Pedido> LIST = new ArrayList<>();
 
     @GetMapping("/consultar")
     public List<Pedido> consultar() {
-        return LIST;
+        return pedidoService.consultar();
     }
 
     @PostMapping("/cadastrar")
     public Pedido cadastrar(@RequestBody PedidoModel model) {
-        return LIST.add(model);
+        return pedidoService.cadastrar(model);
     }
 
     @PutMapping("/adicionar-produtos/{id}")
@@ -40,9 +40,6 @@ public class PedidoController {
     @PutMapping("/pagar/{id}")
     public Pedido pagar(@PathVariable UUID id, @RequestBody PagarPedidoModel model) {
         var pedido = LIST.stream()
-                .filter(x -> x.getId().equals(id))
-                .findFirst()
-                .orElseThrow(NaoExisteException::new);
-        return pedido.pagar(model.getValor());
+        return pedidoService.pagar(model.getValor());
     }
 }
